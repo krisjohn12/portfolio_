@@ -6,7 +6,7 @@ and JavaScript — no frameworks, no build tools, no dependencies to install.
 
 ## Live Preview
 
-Open `index.html` in any browser, or visit the deployed link: `[add your live link here]`
+Open `index.html` in any browser, or visit the deployed link: `https://github.com/krisjohn12/portfolio_/`
 
 ## About This Project
 
@@ -71,4 +71,4 @@ No build step is required.
 
 **Kris-John O. Martinez**
 3rd Year, BS Information Technology
-📧 krisjohn.martinez@example.com
+📧 krisjohnmartinez12@gmail.com
