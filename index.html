@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kris-John O. Martinez — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef3f7;
+    --ink: #10202b;
+    --muted: #4c6478;
+    --line: #c7d6e0;
+    --blue: #1d5d8c;
+    --blue-deep: #0a3049;
+    --cyan: #bfe3f5;
+    --accent: #e8622c;
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --max-width: 1080px;
+    --radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 26px 26px;
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  a { color: inherit; }
+
+  section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+  }
+  .kicker-inverse { color: var(--cyan); }
+
+  .section-copy { color: var(--muted); max-width: 55ch; margin-top: 0.75rem; }
+
+  /* ===== Header / sheet index nav ===== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2rem;
+    background: rgba(238, 243, 247, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+  }
+  .logo .dim { color: var(--muted); font-weight: 500; }
+
+  .sheet-index { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  .sheet-tab {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 0.4rem 0.75rem;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sheet-tab .num { color: var(--accent); font-weight: 600; }
+  .sheet-tab:hover { color: var(--ink); }
+  .sheet-tab.active { color: var(--ink); border-color: var(--ink); background: #fff; }
+
+  /* ===== Hero / title block ===== */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    padding-top: 4.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5.2rem);
+    line-height: 0.95;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    color: var(--blue);
+    font-size: 0.95rem;
+    margin: 1rem 0 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .intro { color: var(--muted); max-width: 46ch; }
+
+  .cta-row { display: flex; gap: 0.9rem; margin-top: 1.75rem; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { background: #d1531f; border-color: #d1531f; }
+
+  .btn-ghost { color: var(--ink); background: transparent; }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Title block table */
+  .title-block {
+    border: 2px solid var(--ink);
+    background: #fff;
+  }
+  .tb-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .tb-row:last-child { border-bottom: none; }
+  .tb-label, .tb-value {
+    padding: 0.65rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .tb-label {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-right: 1px solid var(--line);
+    background: #f4f8fa;
+  }
+  .tb-value { color: var(--ink); font-weight: 500; }
+
+  /* ===== About / layer legend ===== */
+  .layer-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.75rem;
+    padding: 0;
+    margin: 1.75rem 0 0;
+  }
+
+  .layer-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .layer-swatch {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--ink);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #fff;
+  }
+
+  .layer-name { font-family: var(--font-mono); font-size: 0.85rem; }
+  .layer-name span { display: block; color: var(--muted); font-size: 0.7rem; }
+
+  /* ===== Projects / drawing sheets ===== */
+  .sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .sheet-card {
+    border: 2px solid var(--ink);
+    background: #fff;
+    position: relative;
+  }
+
+  .sheet-num {
+    position: absolute;
+    top: -13px;
+    left: 1.2rem;
+    background: var(--paper);
+    padding: 0 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+  }
+
+  .sheet-thumb {
+    background: var(--blue-deep);
+    aspect-ratio: 16 / 10;
+    display: block;
+    border-bottom: 2px solid var(--ink);
+  }
+  .sheet-thumb svg { display: block; width: 100%; height: 100%; }
+
+  .sheet-body { padding: 1.6rem 1.5rem 1.5rem; }
+
+  .sheet-head h3 { font-size: 1.4rem; }
+
+  .sheet-desc { color: var(--muted); font-size: 0.92rem; margin: 0.75rem 0 1rem; }
+
+  .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 1.1rem; }
+  .spec-table td {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .spec-table td:first-child { color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; width: 40%; }
+  .spec-table td:last-child { color: var(--ink); }
+
+  .field-note {
+    margin: 0 0 1.1rem;
+    padding: 0.85rem 1rem;
+    border-left: 3px dashed var(--accent);
+    background: #fdf3ee;
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .field-note cite {
+    display: block;
+    margin-top: 0.4rem;
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .sheet-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .sheet-link {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .sheet-link:hover { text-decoration: underline; }
+  .sheet-link-secondary { color: var(--muted); }
+  .sheet-link-secondary:hover { color: var(--ink); }
+
+  /* ===== Footer / revision log ===== */
+  .footer {
+    background: var(--blue-deep);
+    color: var(--cyan);
+    max-width: none;
+    padding: 5rem 2rem 3rem;
+    margin-top: 4rem;
+    border-top: 2px solid var(--ink);
+  }
+  .footer h2 { color: #fff; }
+  .footer-copy { color: #9cc3d8; max-width: 50ch; margin-top: 0.75rem; }
+
+  .log-table {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 2rem auto 0;
+    border-collapse: collapse;
+  }
+  .log-table td {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(191, 227, 245, 0.15);
+  }
+  .log-table td:first-child { color: var(--accent); width: 140px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
+  .log-table a { color: var(--cyan); text-decoration: none; }
+  .log-table a:hover { text-decoration: underline; }
+
+  .footer-bottom {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #5f88a0;
+    margin-top: 2.5rem;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; }
+    .topbar { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .tb-row { grid-template-columns: 1fr; }
+    .tb-label { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+
+  a:focus-visible, .sheet-tab:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="logo">MARTINEZ<span class="dim">.KJ</span></div>
+    <nav class="sheet-index" aria-label="Main navigation">
+      <a href="#home" class="sheet-tab active"><span class="num">00</span>HOME</a>
+      <a href="#about" class="sheet-tab"><span class="num">01</span>ABOUT</a>
+      <a href="#projects" class="sheet-tab"><span class="num">02</span>PROJECTS</a>
+      <a href="#contact" class="sheet-tab"><span class="num">03</span>CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== HERO / TITLE BLOCK ===== -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <p class="kicker">// student portfolio — rev. 2026</p>
+        <h1>Kris-John<br>O. Martinez</h1>
+        <p class="role">3rd Year Information Technology Student</p>
+        <p class="intro">
+          I build small, practical tools to practice programming fundamentals —
+          from simple calculators to systems that track real inventory. Still
+          learning, still drafting, one revision at a time.
+        </p>
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Contact</a>
+        </div>
+      </div>
+
+      <div class="title-block" aria-label="Profile summary table">
+        <div class="tb-row"><div class="tb-label">Drawn by</div><div class="tb-value">Kris-John O. Martinez</div></div>
+        <div class="tb-row"><div class="tb-label">Course</div><div class="tb-value">BS Information Technology</div></div>
+        <div class="tb-row"><div class="tb-label">Year level</div><div class="tb-value">3rd Year</div></div>
+        <div class="tb-row"><div class="tb-label">Status</div><div class="tb-value">In progress</div></div>
+        <div class="tb-row"><div class="tb-label">Revision</div><div class="tb-value">A — 2026</div></div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT / LAYER LEGEND ===== -->
+    <section id="about" class="about">
+      <p class="kicker">// sheet 01 — legend</p>
+      <h2>Tools I'm building with</h2>
+      <p class="section-copy">
+        Each language below is a "layer" I'm actively practicing with —
+        the basics are in place, and I'm still adding detail on top.
+      </p>
+      <ul class="layer-list">
+        <li><span class="layer-swatch" style="background:#e07850;">01</span><span class="layer-name">HTML<span>structure</span></span></li>
+        <li><span class="layer-swatch" style="background:#1d5d8c;">02</span><span class="layer-name">CSS<span>styling</span></span></li>
+        <li><span class="layer-swatch" style="background:#d9b13d;">03</span><span class="layer-name">JavaScript<span>behavior</span></span></li>
+        <li><span class="layer-swatch" style="background:#3f8f6f;">04</span><span class="layer-name">Python<span>logic &amp; scripting</span></span></li>
+        <li><span class="layer-swatch" style="background:#cc5b47;">05</span><span class="layer-name">Java<span>OOP practice</span></span></li>
+      </ul>
+    </section>
+
+    <!-- ===== PROJECTS / DRAWING SHEETS ===== -->
+    <section id="projects" class="projects">
+      <p class="kicker">// sheet 02 — drawings</p>
+      <h2>Project sheets</h2>
+      <p class="section-copy">
+        Two small builds from coursework — kept simple and functional while
+        the fundamentals are still being drafted.
+      </p>
+
+      <div class="sheet-grid">
+        <!-- Calculator -->
+        <article class="sheet-card">
+          <span class="sheet-num">SHEET 01 / 02</span>
+          <div class="sheet-thumb" role="img" aria-label="Blueprint-style diagram of the calcpad calculator interface">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="200" fill="#0a3049"/>
+              <rect x="110" y="16" width="100" height="34" rx="2" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <text x="200" y="38" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="14" fill="#bfe3f5">128</text>
+              <g stroke="#bfe3f5" stroke-width="1" fill="none">
+                <rect x="110" y="60" width="22" height="22"/>
+                <rect x="140" y="60" width="22" height="22"/>
+                <rect x="170" y="60" width="22" height="22"/>
+                <rect x="200" y="60" width="22" height="22"/>
+                <rect x="110" y="90" width="22" height="22"/>
+                <rect x="140" y="90" width="22" height="22"/>
+                <rect x="170" y="90" width="22" height="22"/>
+                <rect x="200" y="90" width="22" height="22"/>
+                <rect x="110" y="120" width="22" height="22"/>
+                <rect x="140" y="120" width="22" height="22"/>
+                <rect x="170" y="120" width="22" height="22"/>
+                <rect x="200" y="120" width="22" height="22"/>
+              </g>
+              <line x1="108" y1="152" x2="224" y2="152" stroke="#e8622c" stroke-width="1"/>
+              <line x1="108" y1="146" x2="108" y2="158" stroke="#e8622c" stroke-width="1"/>
+              <line x1="224" y1="146" x2="224" y2="158" stroke="#e8622c" stroke-width="1"/>
+              <text x="166" y="168" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#e8622c">116mm</text>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="sheet-head"><h3>calcpad</h3></div>
+            <p class="sheet-desc">A basic calculator app supporting addition, subtraction, multiplication, and division, with a clean button-grid interface.</p>
+            <table class="spec-table">
+              <tr><td>Duration</td><td>2 weeks · Jan 2026</td></tr>
+              <tr><td>Stack</td><td>HTML · CSS · JavaScript</td></tr>
+            </table>
+            <div class="sheet-links">
+              <a href="#" class="sheet-link" aria-label="Open calcpad live demo (placeholder link)">Run demo →</a>
+              <a href="#" class="sheet-link sheet-link-secondary" aria-label="View calcpad source code (placeholder link)">Source →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Inventory System -->
+        <article class="sheet-card">
+          <span class="sheet-num">SHEET 02 / 02</span>
+          <div class="sheet-thumb" role="img" aria-label="Blueprint-style diagram of the stocktrack inventory system">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="320" height="200" fill="#0a3049"/>
+              <rect x="90" y="24" width="140" height="150" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <line x1="90" y1="60" x2="230" y2="60" stroke="#bfe3f5" stroke-width="1"/>
+              <line x1="90" y1="96" x2="230" y2="96" stroke="#bfe3f5" stroke-width="1"/>
+              <line x1="90" y1="132" x2="230" y2="132" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="98" y="38" width="16" height="14" fill="#e8622c"/>
+              <rect x="122" y="38" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="146" y="38" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="98" y="74" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="122" y="74" width="16" height="14" fill="#e8622c"/>
+              <rect x="146" y="74" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="98" y="110" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="122" y="110" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <rect x="146" y="110" width="16" height="14" fill="none" stroke="#bfe3f5" stroke-width="1"/>
+              <line x1="180" y1="38" x2="222" y2="38" stroke="#bfe3f5" stroke-width="0.75" opacity="0.6"/>
+              <line x1="180" y1="52" x2="210" y2="52" stroke="#bfe3f5" stroke-width="0.75" opacity="0.6"/>
+              <line x1="180" y1="74" x2="222" y2="74" stroke="#bfe3f5" stroke-width="0.75" opacity="0.6"/>
+              <line x1="180" y1="88" x2="205" y2="88" stroke="#bfe3f5" stroke-width="0.75" opacity="0.6"/>
+              <text x="160" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#e8622c">STOCK RACK — QTY LOG</text>
+            </svg>
+          </div>
+          <div class="sheet-body">
+            <div class="sheet-head"><h3>stocktrack</h3></div>
+            <p class="sheet-desc">A simple inventory management system for adding items, logging stock in/out, and viewing current quantities on hand.</p>
+            <table class="spec-table">
+              <tr><td>Duration</td><td>4 weeks · Feb – Mar 2026</td></tr>
+              <tr><td>Stack</td><td>Python · SQLite</td></tr>
+            </table>
+            <blockquote class="field-note">
+              "Naging mas madali i-check ang stock namin gamit ito — simple lang pero gumagana."
+              <cite>— Aling Nena, sari-sari store owner &amp; test user</cite>
+            </blockquote>
+            <div class="sheet-links">
+              <a href="#" class="sheet-link" aria-label="Open stocktrack live demo (placeholder link)">Run demo →</a>
+              <a href="#" class="sheet-link sheet-link-secondary" aria-label="View stocktrack source code (placeholder link)">Source →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER / REVISION LOG ===== -->
+  <footer id="contact" class="footer">
+    <p class="kicker kicker-inverse">// sheet 03 — contact</p>
+    <h2>Get in touch</h2>
+    <p class="footer-copy">Open to internships, group projects, or feedback on anything above.</p>
+
+    <table class="log-table">
+      <tr><td>Email</td><td><a href="mailto:krisjohn.martinez@example.com">krisjohn.martinez@example.com</a></td></tr>
+      <tr><td>GitHub</td><td><a href="https://github.com/" target="_blank" rel="noopener">github.com/krisjohnmartinez</a></td></tr>
+      <tr><td>LinkedIn</td><td><a href="https://linkedin.com/" target="_blank" rel="noopener">linkedin.com/in/krisjohnmartinez</a></td></tr>
+    </table>
+
+    <p class="footer-bottom">SHEET 03 OF 03 — KRIS-JOHN O. MARTINEZ © 2026 — DRAFTED WHILE LEARNING</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('main section, footer#contact');
+    const tabs = document.querySelectorAll('.sheet-tab');
+
+    const setActiveTab = () => {
+      let currentId = sections[0]?.id;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 120) {
+          currentId = section.id;
+        }
+      });
+
+      tabs.forEach((tab) => {
+        const isActive = tab.getAttribute('href') === `#${currentId}`;
+        tab.classList.toggle('active', isActive);
+      });
+    };
+
+    window.addEventListener('scroll', setActiveTab, { passive: true });
+    setActiveTab();
+  </script>
+</body>
+</html>
